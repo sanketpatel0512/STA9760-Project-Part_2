@@ -2,6 +2,10 @@ from sodapy import Socrata
 import json
 import argparse
 import os
+from elasticsearch import Elasticsearch
+
+
+es = Elasticsearch()
 
 #Define Main Function For NYC Parking Violation Data Collection & Output
 def main(page_size,num_pages,output):
@@ -23,14 +27,14 @@ def main(page_size,num_pages,output):
 		d = client.get("nc67-uf89",limit=page_size,offset = off_set)
 		# Output data based on user's choice
 		# Print Data In Stdout
-		if output == False:
-			for i in d:
-				print(i)
-		# Save data to output file
-		else:
-			for i in d:
-				json.dump(i, outfile)
+		for j in d:
+			if output == False:
+				print(j)
+			# Save data to output file
+			else:
+				json.dump(j, outfile)
 				outfile.write('\n')
+			res = es.index(index = "nyc-violations",doc_type = 'json',body=j)
 		off_set += page_size
 
 # Define and parse Commmandline arguments from user
