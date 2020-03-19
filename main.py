@@ -29,6 +29,12 @@ def main(page_size,num_pages,output):
 		# Output data based on user's choice
 		# Print Data In Stdout
 		for j in d:
+			if output == False:
+				print(j)
+			# Save data to output file
+			else:
+				json.dump(j, outfile)
+				outfile.write('\n')
 			#Change Data to relevant datatypes
 			j['issue_date'] = datetime.strptime(j['issue_date'],'%m/%d/%Y').date()
 			if 'fine_amount' in j:
@@ -38,12 +44,7 @@ def main(page_size,num_pages,output):
 				j['reduction_amount'] = float(j['reduction_amount'])
 				j['payment_amount'] = float(j['payment_amount'])
 				j['amount_due'] = float(j['amount_due'])
-			if output == False:
-				print(j)
-			# Save data to output file
-			else:
-				json.dump(j, outfile)
-				outfile.write('\n')
+			
 			res = es.index(index = "nyc-violations",doc_type = 'json',body=j)
 		off_set += page_size
 
