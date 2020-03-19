@@ -3,6 +3,7 @@ import json
 import argparse
 import os
 from elasticsearch import Elasticsearch
+from datetime import datetime
 
 
 es = Elasticsearch()
@@ -28,6 +29,15 @@ def main(page_size,num_pages,output):
 		# Output data based on user's choice
 		# Print Data In Stdout
 		for j in d:
+			#Change Data to relevant datatypes
+			j['issue_date'] = datetime.strptime(j['issue_date'],'%m/%d/%Y').date()
+			if 'fine_amount' in j:
+				j['fine_amount'] = float(j['fine_amount'])
+				j['penalty_amount'] = float(j['penalty_amount'])
+				j['interest_amount'] = float(j['interest_amount'])
+				j['reduction_amount'] = float(j['reduction_amount'])
+				j['payment_amount'] = float(j['payment_amount'])
+				j['amount_due'] = float(j['amount_due'])
 			if output == False:
 				print(j)
 			# Save data to output file
