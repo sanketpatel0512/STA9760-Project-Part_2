@@ -53,3 +53,35 @@ localhost:5601
 
 ### Examples of Visuals and Data Analysis using Kibana
 
+#### Top 5 counties and license types with highest violations
+
+![](Visuals/County&LicenseType.png)
+
+Based on the above, we can conclude that Passenger Vehicles commit highest violations and NY county has highest violations followed by Kings County
+
+
+#### Status of Hearings
+
+![](Visuals/HearingStatus.png)
+
+Based on the above visual, approximately 55% of offenders are found guilty of the violations committed and 29% are found not guilty. Approx. 8% hearings are still pending. Traffic Depart issues the maximum violation tickets followed by the police department.
+
+
+#### Revenue Generated From Violations and Unpaid Revenue
+
+![](Visuals/Revenue_5years.png)
+
+Based on the above visuals, we notice a considerable rise in the revenue collection in 2015 which might be due to increase in vehicles or a change in administration leading to stricter rules. We also notice that in the recent months unpaid fines amount is higher than fines paid.
+
+#### Top 5 Violations
+
+![](Visuals/ViolationTypes.png)
+
+This visual highlights the top 5 violations commited in NYC.
+
+
+#### Combined Visual Dashboard
+
+![](Visuals/Dashboard.png)
+
+This is a combined dasboard of the above 4 visuals
